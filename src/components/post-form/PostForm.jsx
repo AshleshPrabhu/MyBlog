@@ -23,16 +23,20 @@ export default function PostForm({ post }) {
 
     const submit = async (data) => {
         forceUpdate()
-        console.log(userData)
+        // console.log("dataa",data)
+        // console.log(userData)
         if (post) {
-            const file = await data.image[0] ?  appwriteService.uploadFile(data.image[0]) : null;
+            const file = await data.image[0] ?  await appwriteService.uploadFile(data.image[0]) : null;
+            // console.log("file when delete : ",file)
             if (file) {
                 await appwriteService.deleteFile(post.featuredImage);
             }
+            // console.log("post obtained : ",post)
             const dbPost = await appwriteService.updatePost(post.$id, {
                 ...data,
                 featuredImage: file ? file.$id : undefined,
             });
+            // console.log("dbpost for update : ",dbPost)
 
             if (dbPost) {
                 toast.success("Post updated successfully")
@@ -45,12 +49,12 @@ export default function PostForm({ post }) {
         } else {
             if(userData){
                 const file = await appwriteService.uploadFile(data.image[0]);
-                // console.log("file",file)
+                // console.log("file when upload : ",file)
                 if (file) {
                     const fileId = file.$id;
                     data.featuredImage = fileId;
                     data.userId=userData.$id
-                    console.log(data)
+                    // console.log(data)
                     const dbPost = await appwriteService.createPost({ ...data});
                     // console.log("dbPost", dbPost)
                     if (dbPost) {

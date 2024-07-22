@@ -5,6 +5,7 @@ import { Button, Container } from "../components";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { toast } from 'sonner'
 
 
 import authService from "../appwrite/auth";
@@ -35,8 +36,10 @@ export default function Post() {
         appwriteService.deletePost(post.$id).then((status) => {
             if (status) {
                 appwriteService.deleteFile(post.featuredImage);
+                toast.success("Post deleted successfully");
                 navigate("/");
             }
+            else toast.error("Failed to delete post");
         });
     };
 
