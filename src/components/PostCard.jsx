@@ -5,11 +5,6 @@ import {Link} from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import {useSelector} from 'react-redux'
 function PostCard({$id, title, featuredImage}) {
-  // const userData = useSelector((state) => state.auth.userData);
-  
-  
-  // console.log("featuredimage",featuredImage)
-  // console.log(appwriteService.getFilePreview(featuredImage))
   return (
     <Link to={`/post/${$id}`}>
         <div className=' w-full bg-gray-100 border-black dark:bg-gray-900 rounded-xl p-4 h-96'>

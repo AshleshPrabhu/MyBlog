@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 import store from './store/store.js'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './pages/Home.jsx'
-
 import { AuthLayout} from './components/index.js'
 import Login from './pages/Login.jsx'
 // const LazyLogin = React.lazy(() => import('./components/index.js'))
@@ -26,8 +25,6 @@ const LazyNoElement = React.lazy(() => import('./pages/NoElement'))
 const LazyForgotPassword = React.lazy(() => import('./components/ForgotPassword'))
 // import PasswordReset from './components/PasswordReset.jsx'
 const LazyPasswordReset = React.lazy(() => import('./components/PasswordReset'))
-
-
 const LazyHelp = React.lazy(() => import('./components/Footer/Help.jsx'))
 const LazyAffiliate = React.lazy(() => import('./components/Footer/Affiliate.jsx'))
 const LazyContact = React.lazy(() => import('./components/Footer/Contact.jsx'))
@@ -37,9 +34,6 @@ const LazyAccount = React.lazy(() => import('./components/Footer/Account.jsx'))
 const LazyLicense = React.lazy(() => import('./components/Footer/Licensing.jsx'))
 const LazyPricing = React.lazy(() => import('./components/Footer/Pricing.jsx'))
 const LazyFeature = React.lazy(() => import('./components/Footer/Features.jsx'))
-
-
-
 
 const router = createBrowserRouter([
     {
@@ -216,10 +210,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </Provider>
     </React.StrictMode>,
 )
-
-{/* <React.Suspense fallback={<>Loading...</>}>
-                        <AuthLayout authentication={false}>
-                            <LazyLogin/>
-                        </AuthLayout>
-                    </React.Suspense> */}
-

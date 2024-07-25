@@ -13,10 +13,8 @@ function Features() {
                     </span>
                 </div>
                 <br/>
-
                 <h2 className="text-center text-2xl font-bold leading-tight">Features we provide:</h2>
                 <br/>
-                
                 <div className="mt-2 text-center flex flex-col text-base text-black justify-start items-start">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Add,Edit,Delete post <br /></p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. View others Post <br /></p>
@@ -27,7 +25,7 @@ function Features() {
             </div>
         
         </div>
-      )
+    )
 }
 
 export default Features

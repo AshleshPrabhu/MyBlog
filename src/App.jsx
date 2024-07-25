@@ -4,7 +4,7 @@ import authService from './appwrite/auth'
 import { login,logout } from './store/authSlice'
 import { Footer, Header } from './components'
 import {Outlet} from 'react-router-dom'
-import { Toaster, toast } from 'sonner'
+import { Toaster} from 'sonner'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -49,9 +49,7 @@ function App() {
         </div>
       </div>
   </div>
-
   ) : null
-
 }
 
 export default App

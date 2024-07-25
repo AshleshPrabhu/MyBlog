@@ -3,10 +3,10 @@ import {useParams,useNavigate} from 'react-router-dom'
 import{Container,PostForm} from '../components'
 import appwriteService from '../appwrite/config'
 import { toast } from 'sonner'
+
 function EditPost() {
     const [posts,setPosts] = useState(null)
     const {slug} = useParams()
-    // console.log(useParams())
     const navigate = useNavigate()
     useEffect(()=>{
         if(slug){
@@ -15,7 +15,6 @@ function EditPost() {
                     setPosts(post)
                 }
                 else{
-                    // console.log("couldnt get post")
                     toast.error("Couldnt get post")
                     navigate('/')
                 }
@@ -24,7 +23,6 @@ function EditPost() {
             navigate('/')
         }
     },[slug,navigate])
-
 
     return posts? (
     <div className=' py-8'>

@@ -9,7 +9,6 @@ import {useForm} from 'react-hook-form'
 import { toast } from 'sonner'
 import GoogleLogin from './GoogleLogin'
 
-
 function Signup() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -35,7 +34,7 @@ function Signup() {
             setError(error.message)
         }
     }
-  return (
+    return (
     <div className="flex items-center justify-center bg-gray-300 dark:bg-gray-700">
         <div className={`mx-auto w-full max-w-lg bg-gray-400 rounded-xl p-10 border border-black/10 `}>
             <div className="mb-2 flex justify-center">
@@ -103,7 +102,7 @@ function Signup() {
             </form>
         </div>
     </div>
-  )
+    )
 }
 
 export default Signup

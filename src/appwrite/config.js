@@ -1,6 +1,5 @@
 import conf from "../conf/conf.js";
 import { Client, ID, Databases, Query, Storage } from "appwrite";
-
 export class Service{
     Client= new Client();
     databases;
@@ -13,6 +12,7 @@ export class Service{
         this.databases = new Databases(this.Client);
         this.bucket = new Storage(this.Client);
     }
+    
     async createPost({title,slug,content,featuredImage,status,userId}){
         console.log(featuredImage)
         try {

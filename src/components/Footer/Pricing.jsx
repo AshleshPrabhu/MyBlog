@@ -1,9 +1,7 @@
 import React from 'react'
 import Logo from '../Logo'
 
-
 function Pricing() {
-  
     return (
         <div
         className='flex items-center justify-center w-full bg-gray-300 dark:bg-gray-700'
@@ -22,9 +20,8 @@ function Pricing() {
                 </p>
                 <br />
             </div>
-        
         </div>
-      )
+    )
 }
 
 export default Pricing

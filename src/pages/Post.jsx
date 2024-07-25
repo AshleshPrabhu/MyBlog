@@ -7,19 +7,13 @@ import { useSelector } from "react-redux";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { toast } from 'sonner'
 
-
-import authService from "../appwrite/auth";
-
 export default function Post() {
     const [User, setUser] = useState(null)
     const [post, setPost] = useState(null);
     const { slug } = useParams();
     const navigate = useNavigate();
-
     const userData = useSelector((state) => state.auth.userData);
-
     const isAuthor = post && userData ? post.userId === userData.$id : false;
-    
 
     useEffect(() => {
         if (slug) {
@@ -54,11 +48,6 @@ export default function Post() {
                         className="rounded-xl"
                         placeholderSrc={appwriteService.getFilePreview(post.featuredImage)}
                     />
-                    {/* <img
-                        src={appwriteService.getFilePreview(post.featuredImage)}
-                        alt={post.title}
-                        className="rounded-xl"
-                    /> */}
 
                     {isAuthor && (
                         <div className="absolute right-6 top-6">
@@ -79,9 +68,6 @@ export default function Post() {
                 <div className="browser-css text-gray-700 dark:text-white">
                     {parse(post.content)}
                 </div>
-                {/* <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{User.name}</h1>
-                </div> */}
             </Container>
         </div>
     ) : null;

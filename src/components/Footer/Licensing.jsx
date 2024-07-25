@@ -1,7 +1,6 @@
 import React from 'react'
 import Logo from '../Logo'
 
-
 function Licensing() {
     return (
         <div
@@ -16,18 +15,17 @@ function Licensing() {
                 <h2 className="text-center text-2xl font-bold leading-tight">Licensing</h2>
                 <br />
                 <div className="mt-2 text-center text-base text-black60 flex flex-col justify-start items-start">
-                <p>&nbsp;* Last updated: 20/7/2024<br/></p>
-                <p>&nbsp;*The content on MyBlog is currently not licensed<br/></p>
-                <p>*If you have  questions about the licensing of our content,<br/></p>
-                <p> please contact us at contact us section.</p>
-                <br />
-                <br />
-                <br />
+                    <p>&nbsp;* Last updated: 20/7/2024<br/></p>
+                    <p>&nbsp;*The content on MyBlog is currently not licensed<br/></p>
+                    <p>*If you have  questions about the licensing of our content,<br/></p>
+                    <p> please contact us at contact us section.</p>
+                    <br />
+                    <br />
+                    <br />
                 </div>
             </div>
-        
         </div>
-      )
+    )
 }
 
 export default Licensing

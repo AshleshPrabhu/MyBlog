@@ -22,13 +22,11 @@ function Login() {
     // await dispatch(authLogin(data)).unwrap();
     // navigate("/") -> under if(userData)
     const login =async(data)=>{
-        // console.log(data)
         setError("")
         try{
             const session = await authService.login(data)
             if (session) {
                 const userData = await authService.getCurrentUser()
-                console.log("getcurrentuser:=   ",userData)
                 if (userData){ 
                     dispatch(authLogin(userData))
                     toast.success("Logged in successfully")

@@ -1,20 +1,20 @@
 import React,{useState,useEffect} from 'react'
 import appwriteService from '../appwrite/config'
 import { Container,PostCard } from '../components'
+import { toast } from 'sonner'
+
 function AllPosts() {
     const [posts, setPosts] = useState([])
     useEffect(() => {
         appwriteService.getPosts().then((posts)=>{
             if (posts) {
                 setPosts(posts.documents)
-                
             }
             else{
-                console.log("No posts found");
+                toast.error('No posts found')
             }
         })
     }, [])
-    
     
     return (
     <div className=' w-full py-8 bg-gray-300 dark:bg-gray-700'>

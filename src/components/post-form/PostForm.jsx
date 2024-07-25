@@ -23,52 +23,42 @@ export default function PostForm({ post }) {
 
     const submit = async (data) => {
         forceUpdate()
-        // console.log("dataa",data)
-        // console.log(userData)
         if (post) {
             const file = await data.image[0] ?  await appwriteService.uploadFile(data.image[0]) : null;
-            // console.log("file when delete : ",file)
             if (file) {
                 await appwriteService.deleteFile(post.featuredImage);
             }
-            // console.log("post obtained : ",post)
+
             const dbPost = await appwriteService.updatePost(post.$id, {
                 ...data,
                 featuredImage: file ? file.$id : undefined,
             });
-            // console.log("dbpost for update : ",dbPost)
 
             if (dbPost) {
                 toast.success("Post updated successfully")
                 navigate(`/post/${dbPost.$id}`);
             }
             else{
-                // console.log("couldnt update post")
                 toast.error("Couldnt update post")
             }
         } else {
             if(userData){
                 const file = await appwriteService.uploadFile(data.image[0]);
-                // console.log("file when upload : ",file)
                 if (file) {
                     const fileId = file.$id;
                     data.featuredImage = fileId;
                     data.userId=userData.$id
-                    // console.log(data)
                     const dbPost = await appwriteService.createPost({ ...data});
-                    // console.log("dbPost", dbPost)
                     if (dbPost) {
                         toast.success("Post created successfully")
                         navigate(`/post/${dbPost.$id}`);
                     }
                     else{
                         toast.error("Couldnt create post")
-                        // console.log("couldnt create post")
                     }
                 }
                 else{
                     toast.error("Couldnt create post")
-                    // console.log("couldnt create post")
                 }
             }
             else{
@@ -94,7 +84,6 @@ export default function PostForm({ post }) {
                 setValue("slug", slugTransform(value.title, { shouldValidate: true }));
             }
         });
-
         return () => subscription.unsubscribe();
     }, [watch, slugTransform, setValue]);
 

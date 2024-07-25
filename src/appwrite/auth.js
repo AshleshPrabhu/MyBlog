@@ -1,7 +1,5 @@
 import conf from '../conf/conf.js';
 import { Client, Account, ID, OAuthProvider } from "appwrite";
-
-
 export class AuthService {
     client = new Client();
     account;
@@ -11,7 +9,6 @@ export class AuthService {
             .setEndpoint(conf.appwriteUrl)
             .setProject(conf.appwriteProjectId);
         this.account = new Account(this.client);
-            
     }
 
     async createAccount({email, password, name}) {
@@ -57,7 +54,6 @@ export class AuthService {
             const responce =  await this.account.createRecovery(email, url);
             if (responce) {
                 return responce;
-
             }
             else{
                 return null;
@@ -85,11 +81,7 @@ export class AuthService {
             console.log("Appwrite serive :: googleLogin :: error", error);
         }
     }
-
-
-
 }
 
 const authService = new AuthService();
-
 export default authService

@@ -22,8 +22,6 @@ function PasswordReset() {
     const secret = urlParams.get("secret");
     const login =async(data)=>{
         setError("")
-        console.log(data)
-        console.log(userId,secret)
         if(data.AgainPassword.length<8 || data.NewPassword.length<8){
             setError("Password must be at least 8 characters long")
             toast.error("Password must be at least 8 characters long")
@@ -36,10 +34,8 @@ function PasswordReset() {
             }else{
                 const Data={userId,secret,password:data.NewPassword, newpassword:data.AgainPassword}
                 const session = await authService.resetPassword(Data)
-                console.log(session)
                 if(session){
                     toast.success("Password reset successfully")
-                    // dispatch(login(session))
                     navigate("/login")
                 }else{
                     toast.error("Failed to reset password")

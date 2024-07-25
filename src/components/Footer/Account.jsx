@@ -1,9 +1,7 @@
 import React from 'react'
 import Logo from '../Logo'
 
-
 function Account() {
-
     return (
         <div
         className='flex items-center justify-center w-full bg-gray-300 dark:bg-gray-700'
@@ -15,10 +13,8 @@ function Account() {
                     </span>
                 </div>
                 <br/>
-
                 <h2 className="text-center text-2xl font-bold leading-tight">Account</h2>
                 <br/>
-                
                 <p className="mt-2 text-center text-base text-black">
                     <br/>
                     &nbsp;User can only login to their account and make changes. 
@@ -29,7 +25,7 @@ function Account() {
             </div>
         
         </div>
-      )
+    )
 }
 
 export default Account

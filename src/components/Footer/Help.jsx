@@ -3,7 +3,7 @@ import Logo from '../Logo'
 import { Link } from 'react-router-dom'
 
 function Help() {
-  return (
+    return (
     <div
     className='flex items-center justify-center w-full bg-gray-300 dark:bg-gray-700'
     >  
@@ -29,9 +29,8 @@ function Help() {
                 </Link></p>
             </div>
         </div>
-    
     </div>
-  )
+)
 }
 
 export default Help

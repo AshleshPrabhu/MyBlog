@@ -6,8 +6,6 @@ import {useForm} from 'react-hook-form'
 import authService from '../appwrite/auth'
 import { toast } from 'sonner'
 
-
-
 function ForgotPassword() {
     const {register,handleSubmit} = useForm();
     const [error, setError] = useState("")
@@ -27,7 +25,6 @@ function ForgotPassword() {
     return (
         <div
             className='flex items-center justify-center w-full'
-
         >  
         <div className={`mx-auto w-full max-w-lg bg-gray-400 rounded-xl p-10 border border-black/10 `}>
             <div className="mb-2 flex justify-center">
@@ -61,7 +58,6 @@ function ForgotPassword() {
                 </div>
             </form>
         </div>
-    
     </div>
     )
 }

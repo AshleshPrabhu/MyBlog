@@ -1,7 +1,6 @@
 import React from 'react'
 import Logo from '../Logo'
 
-
 function TermsAndCondition() {
     return (
         <div
@@ -43,9 +42,8 @@ function TermsAndCondition() {
                     <br/>
                 </div>
             </div>
-        
         </div>
-      )
+    )
 }
 
 export default TermsAndCondition
