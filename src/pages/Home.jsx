@@ -5,8 +5,10 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 function Home() {
+    const [text, setText] = useState("")
     const [posts,setPosts] = useState([])
     const status = useSelector((state)=>state.auth.status)
+    // const searchPosts=useSelector((state)=>state.posts.searchPosts)
     useEffect(()=>{
         appwriteService.getPosts().then((posts)=>{
             if(posts){
@@ -40,6 +42,17 @@ function Home() {
 
     return(
         <div className=' w-full py-8 bg-gray-300 dark:bg-gray-700'>
+            <div className='w-full flex items-center justify-center h-14'>
+                <div className='md:w-[800px] flex w-[440px] '>
+                    <input 
+                    type="text" 
+                    className='flex-1 rounded-lg placeholder:text-center text-xl transition-colors duration-300 pl-5 border border-gray-500 text-black placeholder-black dark:placeholder-white dark:text-white dark:bg-gray-700 dark:border-white ' 
+                    placeholder='Search for Blogs'
+                    value={text}
+                    onChange={(e)=>setText(e.target.value)}/>
+                    <button className=' w-12 h-12 rounded-lg bg-orange-500'><i className="fa-solid fa-magnifying-glass dark:text-white"/></button>
+                </div>
+            </div>
         <Container>
             <div className=' grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 bg-gray-300 dark:bg-gray-700'>
                 {posts.map((post)=>(
