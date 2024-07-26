@@ -19,7 +19,7 @@ function AllPosts() {
     return (
     <div className=' w-full py-8 bg-gray-300 dark:bg-gray-700'>
         <Container>
-            <div className=' grid grid-cols-4 gap-7 bg-gray-300 dark:bg-gray-700'>
+            <div className=' grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 bg-gray-300 dark:bg-gray-700'>
                 {posts.map((post)=>(
                     <div key={post.$id} className=' p-2 w-full '>
                         <PostCard {...post}/>

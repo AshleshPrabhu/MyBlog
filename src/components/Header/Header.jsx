@@ -39,20 +39,21 @@ function Header() {
   return (
     <header className=' py-3 shadow border-b-2 border-b-black bg-gray-300 dark:bg-gray-700 dark:border-b-2 dark:border-white'>
       <Container >
-        <nav className='flex bg-gray-300  dark:bg-gray-700'>
-          <div className=' mr-4 bg-gray-300  dark:bg-gray-700'>
+        <nav className='flex bg-gray-300  dark:bg-gray-700 items-center justify-between md:items-end md:justify-between'>
+          <div className='md:hidden'><i class="bi bi-list"/></div>
+          <div className=' mr-4 bg-gray-300  dark:bg-gray-700 right-1 relative  '>
             <Link to='/'>
               <Logo width='70px'/>
             </Link>
           </div>
-          <ul className='flex ml-auto bg-gray-300  dark:bg-gray-700 relative'>
+          <ul className='md:flex ml-auto bg-gray-300  dark:bg-gray-700 relative hidden'>
             {
               navItems.map((item)=>
               item.active?(
                 <li key={item.name}>
                   <NavLink
                     to={`${item.slug}`}
-                    className={({isActive})=>`inline-bock px-6 py-2 ${isActive ? " text-orange-700" : " text-gray-600 dark:text-gray-100"} duration-200 hover:bg-blue-300 rounded-full dark:hover:text-gray-600`}
+                    className={({isActive})=>`inline-bock px-6 py-2 ${isActive ? " text-orange-700" : " text-gray-600 dark:text-gray-100"} duration-200 hover:bg-blue-300 rounded-full dark:hover:text-gray-600 `}
                   >{item.name}
                   </NavLink>
                 </li>

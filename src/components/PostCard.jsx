@@ -12,7 +12,7 @@ function PostCard({$id, title, featuredImage}) {
             <LazyLoadImage
               alt={title}
               effect="opacity"
-              className=' rounded-xl h-64 w-64'
+              className=' rounded-xl h-64 md:w-64 w-96 sm:w-[530px]'
               src={appwriteService.getFilePreview(featuredImage)} 
               placeholderSrc={appwriteService.getFilePreview(featuredImage)} 
               

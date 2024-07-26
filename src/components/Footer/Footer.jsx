@@ -6,9 +6,9 @@ function Footer() {
     return (
         <section className="relative overflow-hidden py-10  border-t-2 border-t-black bg-gray-300 dark:bg-gray-700 dark:border-t-2 dark:border-white">
                 <div className="relative z-10 mx-auto max-w-7xl px-4">
-                    <div className="-m-6 flex flex-wrap">
+                    <div className="-m-6 flex flex-wrap flex-col  md:flex-row">
                         <div className="w-full p-6 md:w-1/2 lg:w-5/12">
-                            <div className="flex h-full flex-col justify-between">
+                            <div className="flex h-full flex-col md:justify-between justify-center items-center lg:items-start  ">
                                 <div className="mb-4 inline-flex items-center">
                                 <Link to='/'>
                                     <Logo width='100px'/>
@@ -21,12 +21,12 @@ function Footer() {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full p-6 md:w-1/2 lg:w-2/12">
-                            <div className="h-full">
-                                <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500 dark:text-gray-300">
+                        <div className="w-full p-6 md:w-1/2 lg:w-2/12 ">
+                            <div className="h-full flex flex-col items-center lg:items-start">
+                                <h3 className=" w-[124.03px] tracking-px mb-9  text-xs font-semibold uppercase text-gray-500 dark:text-gray-300">
                                     Company
                                 </h3>
-                                <ul>
+                                <ul className='flex flex-col items center lg:items-start '>
                                     <li className="mb-4">
                                         <Link
                                             className=" text-base font-medium hover:text-gray-500 dark:text-white dark:hover:text-gray-400"
@@ -63,11 +63,11 @@ function Footer() {
                             </div>
                         </div>
                         <div className="w-full p-6 md:w-1/2 lg:w-2/12">
-                            <div className="h-full">
-                                <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500 dark:text-gray-300">
+                            <div className="h-full flex flex-col items-center lg:items-start">
+                                <h3 className=" w-[78.81px] tracking-px mb-9  text-xs font-semibold uppercase text-gray-500 dark:text-gray-300">
                                     Support
                                 </h3>
-                                <ul>
+                                <ul className='flex flex-col items center lg:items-start'>
                                     <li className="mb-4">
                                         <Link
                                             className=" text-base font-medium hover:text-gray-500 dark:text-white dark:hover:text-gray-400"
@@ -96,11 +96,11 @@ function Footer() {
                             </div>
                         </div>
                         <div className="w-full p-6 md:w-1/2 lg:w-3/12">
-                            <div className="h-full">
-                                <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500 dark:text-gray-300">
+                            <div className="h-full flex flex-col items-center lg:items-start">
+                                <h3 className=" w-[78.81px] tracking-px mb-9  text-xs font-semibold uppercase text-gray-500 dark:text-gray-300">
                                     Legals
                                 </h3>
-                                <ul>
+                                <ul className='flex flex-col items center lg:items-start'>
                                     <li className="mb-4">
                                         <Link
                                             className=" text-base font-medium hover:text-gray-500 dark:text-white dark:hover:text-gray-400"
