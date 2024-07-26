@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ThemeMode() {
+function ThemeMode({classadd}) {
     const handleTheme = () => {
         const body = document.querySelector('body');
         body.classList.toggle('dark');
@@ -17,8 +17,8 @@ function ThemeMode() {
     }
     return (
     <div className=' rounded-xl'>
-        <button id='btn' className=' w-full ml-0 mb-5 bg-gray-300  dark:bg-gray-700 ' onClick={handleTheme}>
-            <i id='icon' className="fa-solid fa-moon w-full h-full"/>
+        <button id='btn' className={`w-full ml-0 mb-5  ${classadd}`} onClick={handleTheme}>
+            <i id='icon' className="fa-solid fa-moon "/>
         </button>
     </div>
     )

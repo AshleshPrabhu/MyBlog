@@ -89,25 +89,29 @@ export default function PostForm({ post }) {
 
     return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-            <div className="w-2/3 px-2">
+            <div className="md:w-2/3 px-2 w-full">
                 <Input
                     label="Title :"
                     placeholder="Title"
-                    className="mb-4"
+                    className="mb-4 "
                     {...register("title", { required: true })}
                 />
                 <Input
                     label="Slug :"
                     placeholder="Slug"
-                    className="mb-4"
+                    className="mb-4 "
                     {...register("slug", { required: true })}
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
-                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+                <div className="w-full hidden md:block"><RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} /></div>
             </div>
-            <div className="w-1/3 px-2">
+            <div className="w-full md:hidden">
+            <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+            </div>
+
+            <div className="md:w-1/3 px-2 w-full ">
                 <Input
                     label="Featured Image :"
                     type="file"
