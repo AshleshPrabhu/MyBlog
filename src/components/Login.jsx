@@ -28,10 +28,9 @@ function Login() {
             if (session) {
                 const userData = await authService.getCurrentUser()
                 if (userData){ 
-                    dispatch(authLogin(userData))
+                    dispatch(authLogin({userData}))
                     toast.success("Logged in successfully")
                 }
-                toast.warning("please reload the page for better experience")
                 navigate("/")
             }
             else{

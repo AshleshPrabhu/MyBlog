@@ -7,6 +7,7 @@ import {useDispatch} from 'react-redux'
 import authService from '../appwrite/auth'
 import {useForm} from 'react-hook-form'
 import { toast } from 'sonner'
+import appwriteService from '../appwrite/config'
 import GoogleLogin from './GoogleLogin'
 
 function Signup() {
@@ -16,22 +17,37 @@ function Signup() {
     const [error, setError] = useState("");
     const create = async(data)=>{
         setError("")
-        try{
-            const userData = await authService.createAccount(data)
-            if (userData) {
-                const userdata = await authService.getCurrentUser();
-                if (userdata) {
-                    dispatch(login(userdata))
-                    toast.success("Account created successfully")
+        if(data.password==data.againpassword){
+            try{
+                const userData = await authService.createAccount(data)
+                if (userData) {
+                    const userdata = await authService.getCurrentUser();
+                    console.log("itss userdata",userdata)
+                    if (userdata) {
+                        const response = await appwriteService.saveUser({userId:userdata.$id,userName:userdata.name,userEmail:userdata.email})
+                        console.log("response from saveuser",response)
+                        if(response){
+                            dispatch(login({userdata}))
+                            toast.success("Account created successfully")
+                        }
+                        else{
+                            setError("Failed to save user")
+                        }
+                        
+                    }
+                    navigate("/");
                 }
-                navigate("/");
+                else{
+                    toast.error("Failed to create account")
+                    setError("Invalid email or password")
+                }
+            }catch(error){
+                setError(error.message)
             }
-            else{
-                toast.error("Failed to create account")
-                setError("Invalid email or password")
-            }
-        }catch(error){
-            setError(error.message)
+        }
+        else{
+            setError("Password does not match")
+            toast.error("password doesnt match")
         }
     }
     return (
@@ -85,6 +101,15 @@ function Signup() {
                     placeholder="Enter your password"
                     type="password"
                     {...register("password",{
+                        required:true,
+                    })}
+                    />
+
+                    <Input
+                    label="Re enter password: "
+                    placeholder="Enter your password again"
+                    type="password"
+                    {...register("againpassword",{
                         required:true,
                     })}
                     />

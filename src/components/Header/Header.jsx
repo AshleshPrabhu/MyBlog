@@ -76,7 +76,7 @@ function Header() {
             } 
             {authStatus&&(
               <li >
-                <LogoutBtn />
+                <LogoutBtn className={"dark:text-white dark:hover:text-gray-600"} />
               </li>
             )}
             <li className=' ml-4 relative group'>
@@ -91,11 +91,10 @@ function Header() {
         </nav>
       </Container>
       {btnOpen && (
-        
         <ul className='flex flex-col gap-8 justify-start pt-[30%] mx-auto items-center h-screen w-[40%] fixed top-0 bg-slate-500 z-50'>
-              <button onClick={toggle} className="lg:hidden">
-                <FontAwesomeIcon icon={faX} className="text-[1.5rem] dark:text-white" />
-              </button>
+            <button onClick={toggle} className="lg:hidden">
+              <FontAwesomeIcon icon={faX} className="text-[1.5rem] dark:text-white" />
+            </button>
             {
               navItems.map((item)=>
               item.active?(
@@ -111,23 +110,23 @@ function Header() {
             } 
             {authStatus&&(
               <li >
-                <LogoutBtn />
+                <LogoutBtn className={"text-gray-100"}/>
               </li>
             )}
-            <li className=' ml-4 relative group bg-slate-500'>
-              <ThemeMode classadd={"bg-slate-500 dark:bg-slate-500"}/>
+            <li className=' ml-4 relative group'>
+              <ThemeMode classadd={"bg-gray-300  dark:bg-gray-700"} />
               <div id='hoverelement' className=' hidden group-hover:block'>
                 <div className=' w-32 h-5 text-white bg-gray-600 p-3 flex justify-center items-center absolute z-0 -bottom-1 -right-12 rounded-xl '>
                   <p>change theme</p>
                 </div>
               </div>
             </li>
-            <div className=' mr-4 bg-gray-300  dark:bg-gray-700  top-10 right-14 absolute'>
-            <Link to='/'>
-              <Logo width='70px'/>
-            </Link>
-          </div>
-          </ul>
+            <div className=' mr-4 bg-gray-300  dark:bg-gray-700  top-10 right-auto left-auto absolute'>
+              <Link to='/'>
+                <Logo width='70px'/>
+              </Link>
+            </div>
+        </ul>
       )}
     </header>
   )

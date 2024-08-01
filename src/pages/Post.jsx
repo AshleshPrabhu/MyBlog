@@ -19,6 +19,8 @@ export default function Post() {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
                 if (post) {
+                    // console.log("this is a post",post)
+                    userget(post)
                     setPost(post)
                 }
                 else {navigate("/")};
@@ -36,6 +38,28 @@ export default function Post() {
             else toast.error("Failed to delete post");
         });
     };
+    
+
+    const userget = async(posts)=>{
+        // console.log("this is post",posts) 
+        const newdata = await appwriteService.getAllUsers()
+        // console.log("this is all data",newdata)
+        // console.log(newdata.documents)
+        newdata.documents.map((ele)=>{
+            if(ele.userId === posts.userId){
+                setUser(ele)
+                return
+            }
+            else{}
+        })
+        // console.log("this is user",User)
+        // const data = await appwriteService.getoneUser({userId:posts.userId})
+        // console.log("this is a data",data)
+        // setUser(data)
+    }
+
+
+
 
     return post ? (
         <div className="py-8">
@@ -68,6 +92,15 @@ export default function Post() {
                 <div className="browser-css text-gray-700 dark:text-white">
                     {parse(post.content)}
                 </div>
+                <br />
+                <br />
+                <br />
+                <div>
+                    <h2 className="text-lg  text-gray-700 dark:text-white">Post Created By: {User?.userName} </h2>
+                </div>
+                {/* <div>
+                    <Comments key={comments.id} comments={comments} handleComment={handleComment} handleDelete={handleDelete}/>
+                </div> */}
             </Container>
         </div>
     ) : null;

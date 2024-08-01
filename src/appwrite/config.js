@@ -14,7 +14,7 @@ export class Service{
     }
     
     async createPost({title,slug,content,featuredImage,status,userId}){
-        console.log(featuredImage)
+        // console.log(featuredImage)
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -91,6 +91,84 @@ export class Service{
         }
         catch(error){
             console.log("Appwrite service :: getPosts :: error", error);
+            return false;  
+        }
+    }
+
+    //user data storage
+    
+    async saveUser({userId,userName,userEmail}){
+        // console.log(featuredImage)
+        try {
+            return await this.databases.createDocument(
+                conf.appwriteDatabaseId,
+                conf.appwrtieuserdetailsId,
+                userId,         
+                {   
+                    userId,
+                    userName,
+                    userEmail
+                }
+            )
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async editUser(userId,{userName,userEmail}){
+        try {
+            return await this.databases.updateDocument(
+                conf.appwriteDatabaseId,
+                conf.appwrtieuserdetailsId,
+                userId,
+                {
+                    userName,
+                    userEmail
+                }
+            )
+        } catch (error) {
+            console.log("Appwrite service :: editUser :: error", error);
+        }
+    }
+
+    async deleteUser(userId){
+        try{
+            await this.databases.deleteDocument(
+                conf.appwriteDatabaseId,
+                conf.appwrtieuserdetailsId,
+                userId
+            )
+            return true
+        }
+        catch(error){
+            console.log("Appwrite service :: deleteUser :: error", error);
+            return false;
+        }
+    }
+    
+    async getoneUser(userId){
+        try{
+            return await this.databases.getDocument(
+                conf.appwriteDatabaseId,
+                conf.appwrtieuserdetailsId,
+                userId
+            )
+        }
+        catch(error){
+            console.log("Appwrite service :: getoneUser :: error", error);
+            return false
+        }
+    }
+
+    async getAllUsers(){
+        try{
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwrtieuserdetailsId
+            )
+        }
+        catch(error){
+            console.log("Appwrite service :: getAllUsers :: error", error);
             return false;  
         }
     }

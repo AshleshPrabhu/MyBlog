@@ -5,6 +5,7 @@ import { login,logout } from './store/authSlice'
 import { Footer, Header } from './components'
 import {Outlet} from 'react-router-dom'
 import { Toaster} from 'sonner'
+// import './App.css'
 
 function App() {
   const [loading, setLoading] = useState(true)
