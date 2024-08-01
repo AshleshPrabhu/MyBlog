@@ -102,7 +102,7 @@ export class Service{
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
-                conf.appwrtieuserdetailsId,
+                conf.appwriteuserdetailsId,
                 userId,         
                 {   
                     userId,
@@ -119,7 +119,7 @@ export class Service{
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
-                conf.appwrtieuserdetailsId,
+                conf.appwriteuserdetailsId,
                 userId,
                 {
                     userName,
@@ -135,7 +135,7 @@ export class Service{
         try{
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
-                conf.appwrtieuserdetailsId,
+                conf.appwriteuserdetailsId,
                 userId
             )
             return true
@@ -150,7 +150,7 @@ export class Service{
         try{
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,
-                conf.appwrtieuserdetailsId,
+                conf.appwriteuserdetailsId,
                 userId
             )
         }
@@ -164,12 +164,54 @@ export class Service{
         try{
             return await this.databases.listDocuments(
                 conf.appwriteDatabaseId,
-                conf.appwrtieuserdetailsId
+                conf.appwriteuserdetailsId
             )
         }
         catch(error){
             console.log("Appwrite service :: getAllUsers :: error", error);
             return false;  
+        }
+    }
+
+    //comments
+    async addComments({slug,comments}){
+        try{
+            return await this.databases.createDocument(
+                conf.appwriteDatabaseId,
+                conf.appwritecommentsId,
+                slug,
+                {
+                    comments
+                }
+            )
+        }catch(error){
+            console.log("Appwrite service :: addComment :: error", error);
+        }
+    }
+
+    async editComments({slug,comments}){
+        try {
+            return await this.databases.updateDocument(
+                conf.appwriteDatabaseId,
+                conf.appwritecommentsId,
+                slug,
+                {
+                    comments
+                }
+            )
+        } catch (error) {
+            console.log("Appwrite service :: editComment :: error", error);
+        }
+    }
+
+    async getAllComments(){
+        try {
+            return await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwritecommentsId,
+            )
+        } catch (error) {
+            console.log("Appwrite service :: getAllComments :: error", error);
         }
     }
 

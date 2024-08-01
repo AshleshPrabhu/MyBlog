@@ -6,14 +6,37 @@ import parse from "html-react-parser";
 import { useSelector } from "react-redux";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { toast } from 'sonner'
+import AllComments from '../components/comments/AllComments'
+import useNode from '../hooks/useNode'
+
 
 export default function Post() {
+    const comments={
+        id:1,
+        items:[]
+    }
     const [User, setUser] = useState(null)
     const [post, setPost] = useState(null);
     const { slug } = useParams();
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
     const isAuthor = post && userData ? post.userId === userData.$id : false;
+
+    const [commentsData, setCommentsData] = useState(comments)
+    const {insertNode,editNode,deleteNode}=useNode()
+    const handleInsertNode = (folderId,item)=>{
+        const finalStructure = insertNode(commentsData,folderId,item)
+        setCommentsData(finalStructure)
+    }
+    const handleEditNode = (folderId,value)=>{
+        const finalStructure = editNode(commentsData,folderId,value)
+            setCommentsData(finalStructure)
+    }
+    const handleDeleteNode = (folderId)=>{
+        const finalStructure = deleteNode(commentsData, folderId)
+        const temp={...finalStructure}
+        setCommentsData(temp)
+    }
 
     useEffect(() => {
         if (slug) {
@@ -60,7 +83,6 @@ export default function Post() {
 
 
 
-
     return post ? (
         <div className="py-8">
             <Container>
@@ -95,12 +117,22 @@ export default function Post() {
                 <br />
                 <br />
                 <br />
-                <div>
+                <div className=" mb-5">
                     <h2 className="text-lg  text-gray-700 dark:text-white">Post Created By: {User?.userName} </h2>
                 </div>
                 {/* <div>
                     <Comments key={comments.id} comments={comments} handleComment={handleComment} handleDelete={handleDelete}/>
                 </div> */}
+                <div className="border-t-2 border-gray-700 dark:border-white my-5" />
+                <div className="w-full flex items-center justify-center h-10 ">
+                    <h1 className="text-2xl font-bold text-gray-700 dark:text-white">COMMENTS</h1>
+                </div>
+                <AllComments
+                comment={commentsData}
+                handleInsertNode={handleInsertNode}
+                handleEditNode={handleEditNode}
+                handleDeleteNode={handleDeleteNode}
+                />
             </Container>
         </div>
     ) : null;
