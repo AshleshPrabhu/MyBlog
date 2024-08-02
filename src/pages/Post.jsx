@@ -24,17 +24,21 @@ export default function Post() {
 
     const [commentsData, setCommentsData] = useState(comments)
     const {insertNode,editNode,deleteNode}=useNode()
-    const handleInsertNode = (folderId,item)=>{
+    const handleInsertNode = async(folderId,item)=>{
         const finalStructure = insertNode(commentsData,folderId,item)
+        await appwriteService.addComments({slug:slug,comments:JSON.stringify(finalStructure)})
         setCommentsData(finalStructure)
     }
-    const handleEditNode = (folderId,value)=>{
+    const handleEditNode = async(folderId,value)=>{
         const finalStructure = editNode(commentsData,folderId,value)
-            setCommentsData(finalStructure)
+        await appwriteService.editComments({slug:slug,comments:JSON.stringify(finalStructure)})
+        setCommentsData(finalStructure)
     }
-    const handleDeleteNode = (folderId)=>{
+    const handleDeleteNode = async(folderId)=>{
         const finalStructure = deleteNode(commentsData, folderId)
         const temp={...finalStructure}
+        await appwriteService.editComments({slug:slug,comments:JSON.stringify(temp)})
+
         setCommentsData(temp)
     }
 
@@ -42,7 +46,7 @@ export default function Post() {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
                 if (post) {
-                    // console.log("this is a post",post)
+                    console.log("this is a post",post)
                     userget(post)
                     setPost(post)
                 }
@@ -132,6 +136,7 @@ export default function Post() {
                 handleInsertNode={handleInsertNode}
                 handleEditNode={handleEditNode}
                 handleDeleteNode={handleDeleteNode}
+                slug={slug}
                 />
             </Container>
         </div>

@@ -6,6 +6,7 @@ const AllComments = ({
     handleInsertNode,
     handleDeleteNode,
     handleEditNode,
+    slug
     }) => {
     const [input,setInput]=useState("")
     const [editMode, setEditMode] = useState(false)
@@ -14,7 +15,7 @@ const AllComments = ({
     const inputRef = useRef(null)
     useEffect(()=>{
         inputRef?.current?.focus()
-        
+        console.log(comment)
     },[editMode])
     const onAddComment=()=>{
         if(editMode){
@@ -114,6 +115,7 @@ const AllComments = ({
                     handleDeleteNode={handleDeleteNode}
                     handleInsertNode={handleInsertNode}
                     handleEditNode={handleEditNode}
+                    slug={slug}
                     />
                 })}
             </div>
