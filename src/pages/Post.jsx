@@ -34,9 +34,9 @@ export default function Post() {
         else{
             await appwriteService.editComments({slug:slug, comments:JSON.stringify(finalStructure)})
         }
-        // const resp = await appwriteService.getAllComments()
-        // if(resp) console.log("docu2",(JSON.parse(resp?.documents[0]?.comments))?.id)
-        // console.log("this is all commentss 2",await appwriteService.getAllComments())
+        const resp = await appwriteService.getAllComments()
+        if(resp) console.log("docu2",(JSON.parse(resp?.documents[0]?.comments))?.id)
+        console.log("this is all commentss 2",await appwriteService.getAllComments())
         setCommentsData(finalStructure)
     }
     const handleEditNode = async(folderId,value)=>{
