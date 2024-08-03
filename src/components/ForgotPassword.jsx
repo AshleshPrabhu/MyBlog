@@ -39,6 +39,7 @@ function ForgotPassword() {
                     <Input
                     label="Email: "
                     placeholder="Enter your email"
+                    extraclass="hidden"
                     type="email"
                     {...register("email",{
                         required:true,

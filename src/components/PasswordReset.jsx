@@ -63,36 +63,34 @@ function PasswordReset() {
             {error && <p className="text-center text-red-600 mt-8 ">{error}</p> }
             <form onSubmit={handleSubmit(login)} className=' mt-8'>
                 <div className=' space-y-5'>
-                {/* <Input
-                    label="OldPassword: "
-                    placeholder="Enter your old password"
-                    type="password"
-                    {...register("Password",{
-                        required:true,
-                    })}
-                /> */}
+                    {/* <Input
+                        label="OldPassword: "
+                        placeholder="Enter your old password"
+                        type="password"
+                        {...register("Password",{
+                            required:true,
+                        })}
+                    /> */}
 
-                <Input
-                    label="NewPassword: "
-                    placeholder="Enter your password"
-                    type="password"
-                    {...register("NewPassword",{
-                        required:true,
-                    })}
-                />
-                <Input
-                    label="Re enter password : "
-                    placeholder="Enter your password again"
-                    type="password"
-                    {...register("AgainPassword",{
-                        required:true,
-                    })}
-                />
+                    <Input
+                        label="NewPassword: "
+                        placeholder="Enter your password"
+                        className="rounded-br-none rounded-tr-none"
+                        type="password"
+                        {...register("NewPassword",{
+                            required:true,
+                        })}
+                    />
+                    <Input
+                        label="Re enter password : "
+                        placeholder="Enter your password again"
+                        className="rounded-bl-none rounded-tl-none"
+                        type="password"
+                        {...register("AgainPassword",{
+                            required:true,
+                        })}
+                    />
                     
-                    
-
-
-
                     <Button
                     type="submit"
                     className="w-full"

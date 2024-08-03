@@ -67,6 +67,7 @@ function Login() {
                     <Input
                     label="Email: "
                     placeholder="Enter your email"
+                    extraclass="hidden"
                     type="email"
                     {...register("email",{
                         required:true,
@@ -79,6 +80,7 @@ function Login() {
 
                     <Input
                     label="Password: "
+                    className="rounded-br-none rounded-tr-none"
                     placeholder="Enter your password"
                     type="password"
                     {...register("password",{
@@ -87,7 +89,7 @@ function Login() {
                     />
                     <div className="flex items-center justify-between">
                     <Link to="/forgot-password">
-                        <p className="text-sm font-medium text-primary hover:underline dark:text-white">
+                        <p className="text-sm font-medium text-primary hover:underline dark:text-white ">
                             Forgot password ?
                         </p>
                     </Link>

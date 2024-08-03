@@ -76,6 +76,7 @@ function Signup() {
                 <div className=' space-y-5'>
                     <Input
                     label="Full Name: " 
+                    extraclass="hidden"
                     placeholder="Enter your full name"
                     {...register("name",{
                         required:true,
@@ -86,6 +87,7 @@ function Signup() {
                     <Input
                     label="Email: "
                     placeholder="Enter your email"
+                    extraclass="hidden"
                     type="email"
                     {...register("email",{
                         required:true,
@@ -99,6 +101,7 @@ function Signup() {
                     <Input
                     label="Password: "
                     placeholder="Enter your password"
+                    className="rounded-br-none rounded-tr-none"
                     type="password"
                     {...register("password",{
                         required:true,
@@ -108,6 +111,7 @@ function Signup() {
                     <Input
                     label="Re enter password: "
                     placeholder="Enter your password again"
+                    className="rounded-br-none rounded-tr-none"
                     type="password"
                     {...register("againpassword",{
                         required:true,
