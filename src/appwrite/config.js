@@ -180,7 +180,8 @@ export class Service{
                 conf.appwriteDatabaseId,
                 conf.appwritecommentsId,
                 slug,
-                {
+                {   
+                    slug,
                     comments
                 }
             )
@@ -195,7 +196,8 @@ export class Service{
                 conf.appwriteDatabaseId,
                 conf.appwritecommentsId,
                 slug,
-                {
+                {   
+                    slug,
                     comments
                 }
             )

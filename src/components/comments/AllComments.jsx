@@ -38,8 +38,8 @@ const AllComments = ({
 
     return (
         <div>
-        <div className={comment.id===1? "flex w-full gap-1 items-baseline":"m-5 ] bg-white flex flex-col p-[5px_10px] w-full h-[80px] cursor-pointer border-l-[7px] border-[#ff6601] rounded-lg shadow-[0_4px_8px_0_rgba(0,0,0,0.2),0_6px_20px_0_rgba(0,0,0,0.19)] dark:shadow-[0_4px_8px_0_rgba(250,250,250,0.7),0_6px_20px_0_rgba(250,250,250,0.69)]"}>
-            {comment.id===1?(
+        <div className={comment?.id===1? "flex w-full gap-1 items-baseline":"m-5 ] bg-white flex flex-col p-[5px_10px] w-full h-[80px] cursor-pointer border-l-[7px] border-[#ff6601] rounded-lg shadow-[0_4px_8px_0_rgba(0,0,0,0.2),0_6px_20px_0_rgba(0,0,0,0.19)] dark:shadow-[0_4px_8px_0_rgba(250,250,250,0.7),0_6px_20px_0_rgba(250,250,250,0.69)]"}>
+            {comment?.id===1?(
             <div className='w-full flex'>
                 <input 
                 type="text"

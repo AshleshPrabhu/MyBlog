@@ -25,6 +25,33 @@ export default function Post() {
 
     const [commentsData, setCommentsData] = useState(comments)
     const {insertNode,editNode,deleteNode}=useNode()
+    // const effect=async()=>{
+    //     // setCount(2)
+    //     const resp = await appwriteService.getAllComments()
+    //     if(resp){
+    //     // setCount(3)
+    //     const data = resp?.documents
+    //     console.log(data)
+    //     data.forEach(element => {
+    //         if(element.slug===slug){
+    //             // setCount(4)
+    //             setCommentsData(JSON.parse(element.comments))
+    //             return
+    //         }
+    //         else{
+    //             // setCount(5)
+    //             setCommentsData(comments)
+    //         }
+    //     });}
+    //     else{
+    //         // setCount(6)
+    //         setCommentsData(comments)
+    //     }
+    // }
+    // useEffect(()=>{
+    //     setCount(7)
+    //     effect()
+    // },[])
     const handleInsertNode = async(folderId,item)=>{
         const finalStructure = insertNode(commentsData,folderId,item)
         if(count===0){
@@ -34,22 +61,57 @@ export default function Post() {
         else{
             await appwriteService.editComments({slug:slug, comments:JSON.stringify(finalStructure)})
         }
+
         const resp = await appwriteService.getAllComments()
-        if(resp) console.log("docu2",(JSON.parse(resp?.documents[0]?.comments))?.id)
-        console.log("this is all commentss 2",await appwriteService.getAllComments())
-        setCommentsData(finalStructure)
+        const data = resp?.documents
+        console.log(data)
+        data.forEach(element => {
+            if(element.slug===slug){
+                setCommentsData(JSON.parse(element.comments))
+                return
+            }
+            else{
+                setCommentsData(null)
+            }
+        });
+        // if(resp) console.log("docu2",(JSON.parse(resp?.documents[0]?.comments))?.id)
+        // console.log("this is all commentss 2",await appwriteService.getAllComments())
+        // setCommentsData(finalStructure)
     }
     const handleEditNode = async(folderId,value)=>{
         const finalStructure = editNode(commentsData,folderId,value)
         await appwriteService.editComments({slug:slug,comments:JSON.stringify(finalStructure)})
-        setCommentsData(finalStructure)
+        const resp = await appwriteService.getAllComments()
+        const data = resp?.documents
+        console.log(data)
+        data.forEach(element => {
+            if(element.slug===slug){
+                setCommentsData(JSON.parse(element.comments))
+                return
+            }
+            else{
+                setCommentsData(null)
+            }
+        });
+        // setCommentsData(finalStructure)
     }
     const handleDeleteNode = async(folderId)=>{
         const finalStructure = deleteNode(commentsData, folderId)
         const temp={...finalStructure}
         await appwriteService.editComments({slug:slug,comments:JSON.stringify(temp)})
-
-        setCommentsData(temp)
+        const resp = await appwriteService.getAllComments()
+        const data = resp?.documents
+        console.log(data)
+        data.forEach(element => {
+            if(element.slug===slug){
+                setCommentsData(JSON.parse(element.comments))
+                return
+            }
+            else{
+                setCommentsData(null)
+            }
+        });
+        // setCommentsData(temp)
     }
 
     useEffect(() => {
