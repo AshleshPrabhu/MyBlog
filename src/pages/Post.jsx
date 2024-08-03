@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { json, Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
@@ -16,6 +16,7 @@ export default function Post() {
         items:[]
     }
     const [User, setUser] = useState(null)
+    const [count, setCount] = useState(0)
     const [post, setPost] = useState(null);
     const { slug } = useParams();
     const navigate = useNavigate();
@@ -26,7 +27,16 @@ export default function Post() {
     const {insertNode,editNode,deleteNode}=useNode()
     const handleInsertNode = async(folderId,item)=>{
         const finalStructure = insertNode(commentsData,folderId,item)
-        await appwriteService.addComments({slug:slug,comments:JSON.stringify(finalStructure)})
+        if(count===0){
+            await appwriteService.addComments({slug:slug,comments:JSON.stringify(finalStructure)})
+            setCount(1)
+        }
+        else{
+            await appwriteService.editComments({slug:slug, comments:JSON.stringify(finalStructure)})
+        }
+        // const resp = await appwriteService.getAllComments()
+        // if(resp) console.log("docu2",(JSON.parse(resp?.documents[0]?.comments))?.id)
+        // console.log("this is all commentss 2",await appwriteService.getAllComments())
         setCommentsData(finalStructure)
     }
     const handleEditNode = async(folderId,value)=>{

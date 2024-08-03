@@ -212,6 +212,7 @@ export class Service{
             )
         } catch (error) {
             console.log("Appwrite service :: getAllComments :: error", error);
+            return false;
         }
     }
 
