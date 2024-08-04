@@ -2,19 +2,17 @@ import React,{useState} from 'react'
 import {Container,Logo,LogoutBtn} from "../index"
 import { Link ,NavLink} from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import ThemeMode from '../ThemeMode'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
-  const navigate=useNavigate();
   const authStatus=useSelector((state)=>state.auth.status)
   const [btnOpen, setBtnOpen] = useState(false);
   const toggle = () => {
     setBtnOpen(!btnOpen);
   };
-  // <div className='md:hidden block cursor-pointer w-10'><i class="fa-solid fa-bars w-10 h-5"></i></div>
+  // navbar items
   const navItems = [
     {
       name: 'Home',

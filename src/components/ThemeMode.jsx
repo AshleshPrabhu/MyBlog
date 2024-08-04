@@ -1,5 +1,5 @@
 import React from 'react'
-
+// component to change theme
 function ThemeMode({classadd}) {
     const handleTheme = () => {
         const body = document.querySelector('body');

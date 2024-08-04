@@ -8,7 +8,6 @@ import authService from '../appwrite/auth'
 import {useForm} from 'react-hook-form'
 import { toast } from 'sonner'
 import appwriteService from '../appwrite/config'
-import GoogleLogin from './GoogleLogin'
 
 function Signup() {
     const navigate = useNavigate();

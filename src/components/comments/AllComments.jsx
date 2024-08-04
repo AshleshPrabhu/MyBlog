@@ -69,8 +69,8 @@ const AllComments = ({
                     <div style={{display:'flex',marginTop:'5px'}}>
                         {editMode?(
                             <>
-                                <Action className="text-[12px] p-1 rounded-md w-10 text-[#4e4e4e] font-semibold cursor-pointer bg-[#569dff] m-1" type="SAVE" handleClick={onAddComment}/>
-                                <Action className="text-[12px] p-1 rounded-md w-14  text-[#4e4e4e] font-semibold cursor-pointer bg-[#569dff] m-1" type="CANCEL" handleClick={()=>{
+                                <Action className="text-[12px] p-1 rounded-md w-10 text-white font-semibold cursor-pointer bg-[#569dff] m-1" type="SAVE" handleClick={onAddComment}/>
+                                <Action className="text-[12px] p-1 rounded-md w-14  text-white font-semibold cursor-pointer bg-[#569dff] m-1" type="CANCEL" handleClick={()=>{
                                     if(inputRef.current){
                                         inputRef.current.innerText=comment.name
                                     }

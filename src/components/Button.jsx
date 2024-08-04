@@ -1,5 +1,5 @@
 import React from "react";
-
+// reusable button component
 export default function Button({
     children,
     type = "button",

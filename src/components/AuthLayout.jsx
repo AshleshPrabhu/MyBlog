@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {useSelector} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
-
+// Protected component that redirects users to login or homepage based on authentication status and props.
 export default function Protected({children,authentication=true}) {
     const navigate = useNavigate();
     const [loader, setLoader] = useState(true)

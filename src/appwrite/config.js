@@ -12,9 +12,11 @@ export class Service{
         this.databases = new Databases(this.Client);
         this.bucket = new Storage(this.Client);
     }
+
+    // function for connecting posts with database
     
+    // add post to database
     async createPost({title,slug,content,featuredImage,status,userId}){
-        // console.log(featuredImage)
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -33,6 +35,7 @@ export class Service{
         }
     }
 
+    // update post present in database
     async updatePost(slug,{title, content, featuredImage, status}){
         try {
             return await this.databases.updateDocument(
@@ -51,6 +54,7 @@ export class Service{
         }
     }
 
+    //delete post from database
     async deletePost(slug){
         try{
             await this.databases.deleteDocument(
@@ -66,6 +70,7 @@ export class Service{
         }
     }
     
+    // get a post from database
     async getPost(slug){
         try{
             return await this.databases.getDocument(
@@ -80,7 +85,7 @@ export class Service{
         }
     }
 
-    
+    // get all posts from database with active status
     async getPosts(queries=[Query.equal("status","active")]){
         try{
             return await this.databases.listDocuments(
@@ -95,10 +100,10 @@ export class Service{
         }
     }
 
-    //user data storage
+    //user data storage in database
     
+    // save user in database
     async saveUser({userId,userName,userEmail}){
-        // console.log(featuredImage)
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -115,6 +120,7 @@ export class Service{
         }
     }
 
+    // edit user data from database
     async editUser(userId,{userName,userEmail}){
         try {
             return await this.databases.updateDocument(
@@ -131,6 +137,7 @@ export class Service{
         }
     }
 
+    // delete user from database
     async deleteUser(userId){
         try{
             await this.databases.deleteDocument(
@@ -146,6 +153,7 @@ export class Service{
         }
     }
     
+    // get a user from database
     async getoneUser(userId){
         try{
             return await this.databases.getDocument(
@@ -160,6 +168,7 @@ export class Service{
         }
     }
 
+    // get all users from database
     async getAllUsers(){
         try{
             return await this.databases.listDocuments(
@@ -173,7 +182,9 @@ export class Service{
         }
     }
 
-    //comments
+    // comments storage in database
+
+    // add comments to database
     async addComments({slug,comments}){
         try{
             return await this.databases.createDocument(
@@ -190,6 +201,7 @@ export class Service{
         }
     }
 
+    // edit comments present in database
     async editComments({slug,comments}){
         try {
             return await this.databases.updateDocument(
@@ -206,6 +218,7 @@ export class Service{
         }
     }
 
+    // get all comments from database
     async getAllComments(){
         try {
             return await this.databases.listDocuments(
@@ -218,8 +231,9 @@ export class Service{
         }
     }
 
-    // file upload service
+    // file upload service using storage
 
+    // upload a file to storage
     async uploadFile(file){
         try{
             return await this.bucket.createFile(
@@ -235,6 +249,7 @@ export class Service{
         }
     }
 
+    // delete file from storage
     async deleteFile(fileId){
         try{
             await this.bucket.deleteFile(
@@ -249,6 +264,7 @@ export class Service{
         }
     }
 
+    // get preview of file 
     getFilePreview(fileId) {
         try {
             return this.bucket.getFilePreview(

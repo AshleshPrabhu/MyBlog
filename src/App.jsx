@@ -5,24 +5,10 @@ import { login,logout } from './store/authSlice'
 import { Footer, Header } from './components'
 import {Outlet} from 'react-router-dom'
 import { Toaster} from 'sonner'
-// import './App.css'
 
 function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e) => {
-    setMousePosition({ x: e.clientX, y: e.clientY });
-  };
-
-  useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
   useEffect(()=>{
     authService.getCurrentUser()
     .then((userData)=>{
@@ -36,9 +22,6 @@ function App() {
   },[])
   
   return !loading ? (
-    <div style={{
-      background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 0,0 ,  0.9), transparent)`,
-    }}>
       <div className=' min-h-screen flex flex-wrap content-between bg-gray-300 dark:bg-gray-700'>
         <div className='w-full block'>
           <Header/>
@@ -49,7 +32,6 @@ function App() {
           <Footer/>
         </div>
       </div>
-  </div>
   ) : null
 }
 

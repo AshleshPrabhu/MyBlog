@@ -1,4 +1,7 @@
+// contains all operations of comment tree
+
 const useNode=()=>{
+    // insert a comment to tree
     const insertNode = function(tree,commentId,item){
         if(tree.id===commentId){
             tree.items.push({
@@ -14,6 +17,8 @@ const useNode=()=>{
         })
         return {...tree,items:latestNode}
     }
+
+    //editing a comment present in tree
     const editNode = function(tree,commentId,value){
         if(tree.id===commentId){
             tree.name=value
@@ -24,6 +29,8 @@ const useNode=()=>{
         })
         return{...tree}
     }
+
+    // deleting a comment from tree
     const deleteNode = function(tree,id){
         for(let i=0;i<tree.items.length;i++){
             if(tree.items[i].id===id){

@@ -1,5 +1,5 @@
 import React,{useId} from 'react'
-
+// select component to choose active/inactive post status
 function Select({
     options=[],
     label,

@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import React from 'react'
-import {Button,Input,Logo} from '../components/index'
+import {Button,Input,Logo} from '../../components/index'
 import {useForm} from 'react-hook-form'
-import authService from '../appwrite/auth'
+import authService from '../../appwrite/auth'
 import { toast } from 'sonner'
 
 function ForgotPassword() {

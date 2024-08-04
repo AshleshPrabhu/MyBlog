@@ -6,7 +6,6 @@ import {useDispatch} from 'react-redux'
 import authService from '../appwrite/auth'
 import {useForm} from 'react-hook-form'
 import { toast } from 'sonner'
-import GoogleLogin from './GoogleLogin'
 
 // handleSubmit comes from useForm to which we are sending the function that we want to execute after submitting the form 
 // now we dont want to manage state for input field and all it will automatically manage. it refers to handle submit

@@ -8,23 +8,15 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import { AuthLayout} from './components/index.js'
 import Login from './pages/Login.jsx'
-// const LazyLogin = React.lazy(() => import('./components/index.js'))
-// import AddPost from "./pages/AddPost";
+// lazy loading
 const LazyAddPost = React.lazy(() => import('./pages/AddPost'))
-// import Signup from './pages/Signup'
 const LazySignup = React.lazy(() => import('./pages/Signup'))
-// import EditPost from "./pages/EditPost";
 const LazyEdit = React.lazy(() => import('./pages/EditPost'))
-// import Post from "./pages/Post";
 const LazyPost = React.lazy(() => import('./pages/Post'))
-// import AllPosts from "./pages/AllPosts";
 const LazyAllPosts = React.lazy(() => import('./pages/AllPosts'))
-// import NoElement from './pages/NoElement.jsx'
 const LazyNoElement = React.lazy(() => import('./pages/NoElement'))
-// import ForgotPassword from './components/ForgotPassword.jsx'
-const LazyForgotPassword = React.lazy(() => import('./components/ForgotPassword'))
-// import PasswordReset from './components/PasswordReset.jsx'
-const LazyPasswordReset = React.lazy(() => import('./components/PasswordReset'))
+const LazyForgotPassword = React.lazy(() => import('./components/password/ForgotPassword.jsx'))
+const LazyPasswordReset = React.lazy(() => import('./components/password/PasswordReset.jsx'))
 const LazyHelp = React.lazy(() => import('./components/Footer/Help.jsx'))
 const LazyAffiliate = React.lazy(() => import('./components/Footer/Affiliate.jsx'))
 const LazyContact = React.lazy(() => import('./components/Footer/Contact.jsx'))

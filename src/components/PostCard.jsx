@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import appwriteService from '../appwrite/config'
-import authService from '../appwrite/auth';
 import {Link} from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import {useSelector} from 'react-redux'
 function PostCard({$id, title, featuredImage}) {
   return (
     <Link to={`/post/${$id}`}>
@@ -17,11 +15,8 @@ function PostCard({$id, title, featuredImage}) {
               placeholderSrc={appwriteService.getFilePreview(featuredImage)} 
               
               />
-            {/* <img loading='lazy' src={appwriteService.getFilePreview(featuredImage)} alt={title} className=' rounded-xl h-64 w-64'/> */}
             </div>
             <h2 className=' text-xl font-bold dark:text-white'>{title}</h2>
-            {/* <p className=' font-bold dark:text-white'>Created By:</p>
-            <h2 className='font-bold dark:text-white'>{userData.name}</h2> */}
         </div>
     </Link>
   )

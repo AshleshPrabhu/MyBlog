@@ -8,12 +8,7 @@ function Home() {
     const [searchText, setSearchText] = useState("")
     const [posts,setPosts] = useState([])
     const status = useSelector((state)=>state.auth.status)
-    const date = new Date()
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    
-    // const searchPosts=useSelector((state)=>state.posts.searchPosts)
+
     useEffect(()=>{
         appwriteService.getPosts().then((posts)=>{
             if(posts){
@@ -26,7 +21,7 @@ function Home() {
     },[])
 
     const searchPosts =posts && posts.filter((post) =>post.title.toLowerCase().includes(searchText.trim().toLowerCase()));
-    
+    // if not logged in
     if (posts.length === 0|| status=='false') {
         return (
             <div className="w-full py-36 mt-4 text-center bg-gray-300 dark:bg-gray-700">
@@ -46,7 +41,7 @@ function Home() {
             </div>
         )
     }
-
+    // if logged in 
     return(
         <div className=' w-full py-8 bg-gray-300 dark:bg-gray-700'>
             <div className='w-full flex items-center justify-center h-14'>

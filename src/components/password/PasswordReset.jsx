@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
-import {Button,Input,Logo} from '../components/index'
-import authService from '../appwrite/auth'
+import {Button,Input,Logo} from '../../components/index'
+import authService from '../../appwrite/auth'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { useParams} from 'react-router-dom'
-import { login } from '../store/authSlice'
 import { toast } from 'sonner'
 
 
@@ -84,7 +82,7 @@ function PasswordReset() {
                     <Input
                         label="Re enter password : "
                         placeholder="Enter your password again"
-                        className="rounded-bl-none rounded-tl-none"
+                        className="rounded-br-none rounded-tr-none"
                         type="password"
                         {...register("AgainPassword",{
                             required:true,

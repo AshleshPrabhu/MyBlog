@@ -61,7 +61,6 @@ export default function Post() {
         else{
             await appwriteService.editComments({slug:slug, comments:JSON.stringify(finalStructure)})
         }
-
         const resp = await appwriteService.getAllComments()
         const data = resp?.documents
         console.log(data)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Logo } from '../components'
 import { toast } from 'sonner'
-
+// a component which runs if wrong url is provided
 function NoElement() {
     toast.error('Please enter a valid URL')
     return (
