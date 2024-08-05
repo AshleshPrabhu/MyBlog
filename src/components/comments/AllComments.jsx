@@ -27,6 +27,7 @@ const AllComments = ({
         }
         if(editMode) setEditMode(false)
     }
+
     const handleNewComment=()=>{
         setExpand(true)
         setShowInput(true)
@@ -109,7 +110,7 @@ const AllComments = ({
                 )}
                 {comment?.items?.map((cmnt)=>{
                     return <AllComments
-                    key={cmnt.id}
+                    key={cmnt?.id}
                     comment={cmnt}
                     handleDeleteNode={handleDeleteNode}
                     handleInsertNode={handleInsertNode}
