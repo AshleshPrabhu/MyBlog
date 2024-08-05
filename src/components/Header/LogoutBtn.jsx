@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 function LogoutBtn({className}) {
   const navigate=useNavigate();
   const dispatch=useDispatch();
+
   const logoutHandler=()=>{
     authService.logout().then(()=>{
       dispatch(logout());
@@ -15,6 +16,7 @@ function LogoutBtn({className}) {
       navigate('/login');
     })
   }
+  
   return (
     <button onClick={logoutHandler} className={`inline-bock px-6 py-2 -mt-3 duration-200 ${className} hover:bg-blue-300 rounded-full`}>Logout</button>
   )

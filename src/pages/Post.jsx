@@ -30,7 +30,6 @@ export default function Post() {
         const resp = await appwriteService.getAllComments()
         if(resp){
             const data = resp?.documents
-            console.log(data)
             data.forEach(element => {
                 if(element.slug===slug){
                     setCommentsData(JSON.parse(element.comments))
@@ -62,7 +61,6 @@ export default function Post() {
             }
             const resp = await appwriteService.getAllComments()
             const data = resp?.documents
-            console.log(data)
             data.forEach(element => {
                 if(element.slug===slug){
                     setCommentsData(JSON.parse(element.comments))
@@ -83,7 +81,6 @@ export default function Post() {
             }else{
                 const resp = await appwriteService.getAllComments()
                 const data = resp?.documents
-                console.log(data)
                 data.forEach(element => {
                     if(element.slug===slug){
                         setCommentsData(JSON.parse(element.comments))
@@ -124,7 +121,6 @@ export default function Post() {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
                 if (post) {
-                    console.log("this is a post",post)
                     getUser(post)
                     setPost(post)
                     effect()
@@ -207,10 +203,10 @@ export default function Post() {
                     <h1 className="text-2xl font-bold text-gray-700 dark:text-white">COMMENTS</h1>
                 </div>
                 <AllComments
-                comment={commentsData}
-                handleInsertNode={handleInsertNode}
-                handleEditNode={handleEditNode}
-                handleDeleteNode={handleDeleteNode}
+                    comment={commentsData}
+                    handleInsertNode={handleInsertNode}
+                    handleEditNode={handleEditNode}
+                    handleDeleteNode={handleDeleteNode}
                 />
             </Container>
         </div>

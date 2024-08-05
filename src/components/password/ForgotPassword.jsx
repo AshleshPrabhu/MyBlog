@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import React from 'react'
 import {Button,Input,Logo} from '../../components/index'
@@ -9,7 +8,6 @@ import { toast } from 'sonner'
 function ForgotPassword() {
     const {register,handleSubmit} = useForm();
     const [error, setError] = useState("")
-    const navigate = useNavigate()
 
     const login =async(data)=>{
         setError("")
@@ -37,22 +35,22 @@ function ForgotPassword() {
             <form onSubmit={handleSubmit(login)} className=' mt-8'>
                 <div className=' space-y-5'>
                     <Input
-                    label="Email: "
-                    placeholder="Enter your email"
-                    extraclass="hidden"
-                    type="email"
-                    {...register("email",{
-                        required:true,
-                        validate:{
-                            matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                            "Email address must be a valid address",
-                        }
-                    })}
+                        label="Email: "
+                        placeholder="Enter your email"
+                        extraclass="hidden"
+                        type="email"
+                        {...register("email",{
+                            required:true,
+                            validate:{
+                                matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                "Email address must be a valid address",
+                            }
+                        })}
                     />
 
                     <Button
-                    type="submit"
-                    className="w-full"
+                        type="submit"
+                        className="w-full"
                     >
                         Reset Password
                     </Button>

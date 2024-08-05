@@ -12,10 +12,11 @@ const AllComments = ({
     const [showInput, setShowInput] = useState(false)
     const [expand, setExpand] = useState(true)
     const inputRef = useRef(null)
+
     useEffect(()=>{
         inputRef?.current?.focus()
-        console.log(comment)
     },[editMode])
+
     const onAddComment=()=>{
         if(editMode){
             handleEditNode(comment.id,inputRef?.current.innerText)
@@ -32,6 +33,7 @@ const AllComments = ({
         setExpand(true)
         setShowInput(true)
     }
+
     const handleDelete=()=>{
         handleDeleteNode(comment.id)
     }
@@ -42,17 +44,17 @@ const AllComments = ({
             {comment?.id===1?(
             <div className='w-full flex'>
                 <input 
-                type="text"
-                className='m-[6px_0_0_0] placeholder:text-black bg-white p-[5px] flex-1 border border-lightgray w-[full] cursor-pointer rounded-[5px] '
-                autoFocus
-                value={input}
-                onChange={(e)=>setInput(e.target.value)}
-                placeholder='Enter Comment...'
+                    type="text"
+                    className='m-[6px_0_0_0] placeholder:text-black bg-white p-[5px] flex-1 border border-lightgray w-[full] cursor-pointer rounded-[5px] '
+                    autoFocus
+                    value={input}
+                    onChange={(e)=>setInput(e.target.value)}
+                    placeholder='Enter Comment...'
                 />
                 <Action
-                className="text-[12px] p-1 rounded-md h-9 mb-0 flex items-center justify-center font-semibold cursor-pointer  m-1 text-white bg-[#569dff] tracking-[0.8px]"
-                type="COMMENT"
-                handleClick={onAddComment}
+                    className="text-[12px] p-1 rounded-md h-9 mb-0 flex items-center justify-center font-semibold cursor-pointer  m-1 text-white bg-[#569dff] tracking-[0.8px]"
+                    type="COMMENT"
+                    handleClick={onAddComment}
                 />
             </div>
             ):(
@@ -110,12 +112,12 @@ const AllComments = ({
                 )}
                 {comment?.items?.map((cmnt)=>{
                     return <AllComments
-                    key={cmnt?.id}
-                    comment={cmnt}
-                    handleDeleteNode={handleDeleteNode}
-                    handleInsertNode={handleInsertNode}
-                    handleEditNode={handleEditNode}
-                    />
+                                key={cmnt?.id}
+                                comment={cmnt}
+                                handleDeleteNode={handleDeleteNode}
+                                handleInsertNode={handleInsertNode}
+                                handleEditNode={handleEditNode}
+                            />
                 })}
             </div>
         </div>

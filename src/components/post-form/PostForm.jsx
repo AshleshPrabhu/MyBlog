@@ -7,8 +7,6 @@ import { useSelector } from "react-redux";
 import { toast } from 'sonner'
 
 export default function PostForm({ post }) {
-    const [ignored,forceUpdate]=useReducer(x=>x+1,0)
-    
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || "",
@@ -21,18 +19,15 @@ export default function PostForm({ post }) {
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
     const submit = async (data) => {
-        forceUpdate()
         if (post) {
             const file = await data.image[0] ?  await appwriteService.uploadFile(data.image[0]) : null;
             if (file) {
                 await appwriteService.deleteFile(post.featuredImage);
             }
-
             const dbPost = await appwriteService.updatePost(post.$id, {
                 ...data,
                 featuredImage: file ? file.$id : undefined,
             });
-
             if (dbPost) {
                 toast.success("Post updated successfully")
                 navigate(`/post/${dbPost.$id}`);

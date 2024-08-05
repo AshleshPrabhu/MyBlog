@@ -3,21 +3,16 @@ import { useForm } from "react-hook-form";
 import {Button,Input,Logo} from '../../components/index'
 import authService from '../../appwrite/auth'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
 import { toast } from 'sonner'
-
-
 
 function PasswordReset() {
     const navigate = useNavigate()
-    const dispatch = useDispatch();
     const {register,handleSubmit} = useForm();
     const [error, setError] = useState("")
-
-    // const {userId,secret} =useParams()
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get("userId");
     const secret = urlParams.get("secret");
+
     const login =async(data)=>{
         setError("")
         if(data.AgainPassword.length<8 || data.NewPassword.length<8){
@@ -42,12 +37,11 @@ function PasswordReset() {
             }
         }
         catch(error){
-
             setError(error.message)
         }
     }
     
-  return (
+    return (
     <div
         className='flex items-center justify-center w-full'
     >  
@@ -61,14 +55,6 @@ function PasswordReset() {
             {error && <p className="text-center text-red-600 mt-8 ">{error}</p> }
             <form onSubmit={handleSubmit(login)} className=' mt-8'>
                 <div className=' space-y-5'>
-                    {/* <Input
-                        label="OldPassword: "
-                        placeholder="Enter your old password"
-                        type="password"
-                        {...register("Password",{
-                            required:true,
-                        })}
-                    /> */}
 
                     <Input
                         label="NewPassword: "
@@ -90,8 +76,8 @@ function PasswordReset() {
                     />
                     
                     <Button
-                    type="submit"
-                    className="w-full"
+                        type="submit"
+                        className="w-full"
                     >
                         Change Password
                     </Button>
@@ -100,7 +86,7 @@ function PasswordReset() {
         </div>
     
     </div>
-  )
+    )
 }
 
 export default PasswordReset

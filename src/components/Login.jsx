@@ -7,19 +7,12 @@ import authService from '../appwrite/auth'
 import {useForm} from 'react-hook-form'
 import { toast } from 'sonner'
 
-// handleSubmit comes from useForm to which we are sending the function that we want to execute after submitting the form 
-// now we dont want to manage state for input field and all it will automatically manage. it refers to handle submit
-
-// {...register("email")} ... is required . If we wont put ... then everytime we use input component the values will overwrite . here email is the name given
-
 function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {register,handleSubmit} = useForm();
     const [error, setError] = useState("")
 
-    // await dispatch(authLogin(data)).unwrap();
-    // navigate("/") -> under if(userData)
     const login =async(data)=>{
         setError("")
         try{
@@ -40,7 +33,8 @@ function Login() {
             setError(err.message)
         }
     }
-  return (
+
+    return (
     <div
     className='flex items-center justify-center w-full bg-gray-300 dark:bg-gray-700'
     >  
@@ -64,27 +58,27 @@ function Login() {
             <form onSubmit={handleSubmit(login)} className=' mt-8'>
                 <div className=' space-y-5'>
                     <Input
-                    label="Email: "
-                    placeholder="Enter your email"
-                    extraclass="hidden"
-                    type="email"
-                    {...register("email",{
-                        required:true,
-                        validate:{
-                            matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                            "Email address must be a valid address",
-                        }
-                    })}
+                        label="Email: "
+                        placeholder="Enter your email"
+                        extraclass="hidden"
+                        type="email"
+                        {...register("email",{
+                            required:true,
+                            validate:{
+                                matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                "Email address must be a valid address",
+                            }
+                        })}
                     />
 
                     <Input
-                    label="Password: "
-                    className="rounded-br-none rounded-tr-none"
-                    placeholder="Enter your password"
-                    type="password"
-                    {...register("password",{
-                        required:true,
-                    })}
+                        label="Password: "
+                        className="rounded-br-none rounded-tr-none"
+                        placeholder="Enter your password"
+                        type="password"
+                        {...register("password",{
+                            required:true,
+                        })}
                     />
                     <div className="flex items-center justify-between">
                     <Link to="/forgot-password">
@@ -99,16 +93,12 @@ function Login() {
                     >
                         Sign In
                     </Button>
-                    {/* <div className="text-center">Or</div>
-                    <GoogleLogin/> */}
-
-
                 </div>
             </form>
         </div>
     
     </div>
-  )
+    )
 }
 
 export default Login

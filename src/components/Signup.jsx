@@ -14,6 +14,7 @@ function Signup() {
     const dispatch = useDispatch();
     const {register,handleSubmit} = useForm();
     const [error, setError] = useState("");
+
     const create = async(data)=>{
         setError("")
         if(data.password==data.againpassword){
@@ -21,10 +22,8 @@ function Signup() {
                 const userData = await authService.createAccount(data)
                 if (userData) {
                     const userdata = await authService.getCurrentUser();
-                    console.log("itss userdata",userdata)
                     if (userdata) {
                         const response = await appwriteService.saveUser({userId:userdata.$id,userName:userdata.name,userEmail:userdata.email})
-                        console.log("response from saveuser",response)
                         if(response){
                             dispatch(login({userdata}))
                             toast.success("Account created successfully")
@@ -74,58 +73,53 @@ function Signup() {
             <form onSubmit={handleSubmit(create)}>
                 <div className=' space-y-5'>
                     <Input
-                    label="Full Name: " 
-                    extraclass="hidden"
-                    placeholder="Enter your full name"
-                    {...register("name",{
-                        required:true,
-                    })}
-                    />
-
-
-                    <Input
-                    label="Email: "
-                    placeholder="Enter your email"
-                    extraclass="hidden"
-                    type="email"
-                    {...register("email",{
-                        required:true,
-                        validate:{
-                            matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                            "Email address must be a valid address",
-                        }
-                    })}
+                            label="Full Name: " 
+                        extraclass="hidden"
+                        placeholder="Enter your full name"
+                        {...register("name",{
+                            required:true,
+                        })}
                     />
 
                     <Input
-                    label="Password: "
-                    placeholder="Enter your password"
-                    className="rounded-br-none rounded-tr-none"
-                    type="password"
-                    {...register("password",{
-                        required:true,
+                        label="Email: "
+                        placeholder="Enter your email"
+                        extraclass="hidden"
+                        type="email"
+                        {...register("email",{
+                            required:true,
+                            validate:{
+                                matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                "Email address must be a valid address",
+                            }
                     })}
                     />
 
                     <Input
-                    label="Re enter password: "
-                    placeholder="Enter your password again"
-                    className="rounded-br-none rounded-tr-none"
-                    type="password"
-                    {...register("againpassword",{
-                        required:true,
-                    })}
+                        label="Password: "
+                        placeholder="Enter your password"
+                        className="rounded-br-none rounded-tr-none"
+                        type="password"
+                        {...register("password",{
+                            required:true,
+                        })}
+                    />
+
+                    <Input
+                        label="Re enter password: "
+                        placeholder="Enter your password again"
+                        className="rounded-br-none rounded-tr-none"
+                        type="password"
+                        {...register("againpassword",{
+                            required:true,
+                        })}
                     />
                     <Button
-                    type="submit"
-                    className="w-full"
+                        type="submit"
+                        className="w-full"
                     >
                         Create Account
                     </Button>
-                    
-                    {/* <div className="text-center">Or</div>
-                    <GoogleLogin/>*/}
-
                 </div>
             </form>
         </div>

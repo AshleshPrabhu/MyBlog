@@ -9,9 +9,11 @@ import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 function Header() {
   const authStatus=useSelector((state)=>state.auth.status)
   const [btnOpen, setBtnOpen] = useState(false);
+
   const toggle = () => {
     setBtnOpen(!btnOpen);
   };
+  
   // navbar items
   const navItems = [
     {
