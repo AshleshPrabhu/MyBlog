@@ -6,12 +6,11 @@ const AllComments = ({
     handleInsertNode,
     handleDeleteNode,
     handleEditNode,
-    slug
     }) => {
     const [input,setInput]=useState("")
     const [editMode, setEditMode] = useState(false)
     const [showInput, setShowInput] = useState(false)
-    const [expand, setExpand] = useState(false)
+    const [expand, setExpand] = useState(true)
     const inputRef = useRef(null)
     useEffect(()=>{
         inputRef?.current?.focus()
@@ -29,7 +28,7 @@ const AllComments = ({
         if(editMode) setEditMode(false)
     }
     const handleNewComment=()=>{
-        setExpand(!expand)
+        setExpand(true)
         setShowInput(true)
     }
     const handleDelete=()=>{
@@ -64,7 +63,7 @@ const AllComments = ({
                         ref={inputRef}
                         className=' mt-[5px]'
                     >
-                        {comment.name}
+                        {comment?.name}
                     </span>
                     <div style={{display:'flex',marginTop:'5px'}}>
                         {editMode?(
@@ -115,7 +114,6 @@ const AllComments = ({
                     handleDeleteNode={handleDeleteNode}
                     handleInsertNode={handleInsertNode}
                     handleEditNode={handleEditNode}
-                    slug={slug}
                     />
                 })}
             </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { json, Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteService from "../appwrite/config";
 import { Button, Container } from "../components";
 import parse from "html-react-parser";
@@ -25,92 +25,106 @@ export default function Post() {
 
     const [commentsData, setCommentsData] = useState(comments)
     const {insertNode,editNode,deleteNode}=useNode()
-    // const effect=async()=>{
-    //     // setCount(2)
-    //     const resp = await appwriteService.getAllComments()
-    //     if(resp){
-    //     // setCount(3)
-    //     const data = resp?.documents
-    //     console.log(data)
-    //     data.forEach(element => {
-    //         if(element.slug===slug){
-    //             // setCount(4)
-    //             setCommentsData(JSON.parse(element.comments))
-    //             return
-    //         }
-    //         else{
-    //             // setCount(5)
-    //             setCommentsData(comments)
-    //         }
-    //     });}
-    //     else{
-    //         // setCount(6)
-    //         setCommentsData(comments)
-    //     }
-    // }
-    // useEffect(()=>{
-    //     setCount(7)
-    //     effect()
-    // },[])
-    const handleInsertNode = async(folderId,item)=>{
-        const finalStructure = insertNode(commentsData,folderId,item)
-        if(count===0){
-            await appwriteService.addComments({slug:slug,comments:JSON.stringify(finalStructure)})
-            setCount(1)
-        }
-        else{
-            await appwriteService.editComments({slug:slug, comments:JSON.stringify(finalStructure)})
-        }
+    const effect=async()=>{
+        // setCount(2)
         const resp = await appwriteService.getAllComments()
+        if(resp){
+        // setCount(3)
         const data = resp?.documents
         console.log(data)
         data.forEach(element => {
             if(element.slug===slug){
+                // setCount(4)
                 setCommentsData(JSON.parse(element.comments))
+                setCount(1)
                 return
             }
-            else{
-                setCommentsData(null)
+        });}
+        else{
+            // setCount(6)
+            setCommentsData(comments)
+        }
+    }
+ 
+    const handleInsertNode = async(folderId,item)=>{
+        try {
+            const finalStructure = insertNode(commentsData,folderId,item)
+            if(count===0){
+                const result = await appwriteService.addComments({slug:slug,comments:JSON.stringify(finalStructure)})
+                if(result) { setCount(1)}
+                else{
+                    toast.error('Couldnt add comment')
+                }
+
             }
-        });
-        // if(resp) console.log("docu2",(JSON.parse(resp?.documents[0]?.comments))?.id)
-        // console.log("this is all commentss 2",await appwriteService.getAllComments())
-        // setCommentsData(finalStructure)
+            else{
+                const result = await appwriteService.editComments({slug:slug, comments:JSON.stringify(finalStructure)})
+                if(!result) {
+                    toast.error('Couldnt add comment')
+                }
+            }
+            const resp = await appwriteService.getAllComments()
+            const data = resp?.documents
+            console.log(data)
+            data.forEach(element => {
+                if(element.slug===slug){
+                    setCommentsData(JSON.parse(element.comments))
+                    return
+                }
+            });
+            // if(resp) console.log("docu2",(JSON.parse(resp?.documents[0]?.comments))?.id)
+            // console.log("this is all commentss 2",await appwriteService.getAllComments())
+            // setCommentsData(finalStructure)
+        } catch (error) {
+            toast.error("Failed To insert node")
+        }
     }
     const handleEditNode = async(folderId,value)=>{
-        const finalStructure = editNode(commentsData,folderId,value)
-        await appwriteService.editComments({slug:slug,comments:JSON.stringify(finalStructure)})
-        const resp = await appwriteService.getAllComments()
-        const data = resp?.documents
-        console.log(data)
-        data.forEach(element => {
-            if(element.slug===slug){
-                setCommentsData(JSON.parse(element.comments))
-                return
+        try {
+            const finalStructure = editNode(commentsData,folderId,value)
+            const result = await appwriteService.editComments({slug:slug,comments:JSON.stringify(finalStructure)})
+            if(!result){
+                toast.error('Couldnt edit comment')
+            }else{
+                const resp = await appwriteService.getAllComments()
+                const data = resp?.documents
+                console.log(data)
+                data.forEach(element => {
+                    if(element.slug===slug){
+                        setCommentsData(JSON.parse(element.comments))
+                        return
+                    }
+                });
+                // setCommentsData(finalStructure)
             }
-            else{
-                setCommentsData(null)
-            }
-        });
-        // setCommentsData(finalStructure)
+        } catch (error) {
+            toast.error("Failed to edit comment")
+        }
     }
     const handleDeleteNode = async(folderId)=>{
-        const finalStructure = deleteNode(commentsData, folderId)
-        const temp={...finalStructure}
-        await appwriteService.editComments({slug:slug,comments:JSON.stringify(temp)})
-        const resp = await appwriteService.getAllComments()
-        const data = resp?.documents
-        console.log(data)
-        data.forEach(element => {
-            if(element.slug===slug){
-                setCommentsData(JSON.parse(element.comments))
-                return
+        try {
+            const finalStructure = deleteNode(commentsData, folderId)
+            const temp={...finalStructure}
+            const result = await appwriteService.editComments({slug:slug,comments:JSON.stringify(temp)})
+            if(!result){
+                toast.error("couldnt delete post")
             }
             else{
-                setCommentsData(null)
+                toast.success("comment deleted successfully")
+                const resp = await appwriteService.getAllComments()
+                const data = resp?.documents
+                console.log(data)
+                data.forEach(element => {
+                    if(element.slug===slug){
+                        setCommentsData(JSON.parse(element.comments))
+                        return
+                    }
+                });
+                // setCommentsData(temp)
             }
-        });
-        // setCommentsData(temp)
+        } catch (error) {
+            toast.error("Failed to delete comment")
+        }
     }
 
     useEffect(() => {
@@ -120,6 +134,7 @@ export default function Post() {
                     console.log("this is a post",post)
                     userget(post)
                     setPost(post)
+                    effect()
                 }
                 else {navigate("/")};
             });
@@ -127,36 +142,42 @@ export default function Post() {
     }, [slug, navigate]);
 
     const deletePost = () => {
-        appwriteService.deletePost(post.$id).then((status) => {
-            if (status) {
-                appwriteService.deleteFile(post.featuredImage);
-                toast.success("Post deleted successfully");
-                navigate("/");
-            }
-            else toast.error("Failed to delete post");
-        });
+        try {
+            appwriteService.deletePost(post.$id).then((status) => {
+                if (status) {
+                    appwriteService.deleteFile(post.featuredImage);
+                    toast.success("Post deleted successfully");
+                    navigate("/");
+                }
+                else toast.error("Failed to delete post");
+            });
+        } catch (error) {
+            toast.error("An error occurred while deleting the post")
+        }
     };
     
 
     const userget = async(posts)=>{
-        // console.log("this is post",posts) 
-        const newdata = await appwriteService.getAllUsers()
-        // console.log("this is all data",newdata)
-        // console.log(newdata.documents)
-        newdata.documents.map((ele)=>{
-            if(ele.userId === posts.userId){
-                setUser(ele)
-                return
-            }
-            else{}
-        })
-        // console.log("this is user",User)
-        // const data = await appwriteService.getoneUser({userId:posts.userId})
-        // console.log("this is a data",data)
-        // setUser(data)
+        try {
+            // console.log("this is post",posts) 
+            const newdata = await appwriteService.getAllUsers()
+            // console.log("this is all data",newdata)
+            // console.log(newdata.documents)
+            newdata.documents.map((ele)=>{
+                if(ele.userId === posts.userId){
+                    setUser(ele)
+                    return
+                }
+                else{}
+            })
+            // console.log("this is user",User)
+            // const data = await appwriteService.getoneUser({userId:posts.userId})
+            // console.log("this is a data",data)
+            // setUser(data)
+        } catch (error) {
+            toast.error("Failed to fetch user data")
+        }
     }
-
-
 
     return post ? (
         <div className="py-8">
@@ -207,7 +228,6 @@ export default function Post() {
                 handleInsertNode={handleInsertNode}
                 handleEditNode={handleEditNode}
                 handleDeleteNode={handleDeleteNode}
-                slug={slug}
                 />
             </Container>
         </div>
