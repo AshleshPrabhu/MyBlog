@@ -45,7 +45,6 @@ This is a blog website built using React, Tailwind CSS, and Appwrite as a Backen
 ### Backend
 
 - **Appwrite** ![Appwrite](https://img.shields.io/badge/Appwrite-F02E65?style=flat&logo=appwrite&logoColor=white)
-- **REST API** ![REST API](https://img.shields.io/badge/REST_API-02569B?style=flat&logo=api&logoColor=white)
 
 ### Additional Libraries
 
