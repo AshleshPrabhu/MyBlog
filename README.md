@@ -10,6 +10,7 @@ This is a blog website built using React, Tailwind CSS, and Appwrite as a Backen
 - [Dev Dependencies](#dev-dependencies)
 - [Screenshots](#screenshots)
 - [Acknowledgements](#acknowledgments)
+- [Contact](#contact)
 
 ## Features
 
@@ -123,3 +124,7 @@ This project utilizes a variety of dependencies and development dependencies. Be
 - Icons provided by [Font Awesome](https://fontawesome.com/).
 - [TinyMCE](https://www.tiny.cloud/) for the rich text editor.
 - [React Hook Form](https://react-hook-form.com/) for form validation.
+
+## Contact
+
+For any questions, feedback, or issues, please contact [ashlesh.prabhu5@gmail.com](mailto:ashlesh.prabhu5@gmail.com).
