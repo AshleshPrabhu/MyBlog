@@ -87,12 +87,14 @@ export default function PostForm({ post }) {
                 <Input
                     label="Title :"
                     placeholder="Title"
+                    extraclass="hidden"
                     className="mb-4 "
                     {...register("title", { required: true })}
                 />
                 <Input
                     label="Slug :"
                     placeholder="Slug"
+                    extraclass="hidden"
                     className="mb-4 "
                     {...register("slug", { required: true })}
                     onInput={(e) => {
@@ -109,6 +111,7 @@ export default function PostForm({ post }) {
                 <Input
                     label="Featured Image :"
                     type="file"
+                    extraclass="hidden"
                     className="mb-4"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                     {...register("image", { required: !post })}
