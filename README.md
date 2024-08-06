@@ -1,6 +1,6 @@
 # Blog Website
 
-This is a blog website built using React, Tailwind CSS, and Appwrite as a Backend-as-a-Service (BaaS). The project features a modern, responsive design with light and dark mode options, providing users with the ability to create, edit and delete posts.The project also supports comments feature inside each post.
+This is a blog website built using React, Tailwind CSS, and Appwrite as a Backend-as-a-Service (BaaS). The project features a modern, responsive design with light and dark mode options, providing users with the ability to create, edit and delete posts.The project also supports comments feature inside each post.Images are stored in storage , userdetails,comments,posts are stored in database provided by appwrite.
 
 ## Table of Contents
 
@@ -46,7 +46,6 @@ This is a blog website built using React, Tailwind CSS, and Appwrite as a Backen
 ### Backend
 
 - **Appwrite** ![Appwrite](https://img.shields.io/badge/Appwrite-F02E65?style=flat&logo=appwrite&logoColor=white)
-- **REST API** ![REST API](https://img.shields.io/badge/REST_API-02569B?style=flat&logo=api&logoColor=white)
 
 ### Additional Libraries
 
