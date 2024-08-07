@@ -57,11 +57,11 @@ export class AuthService {
     }
 
     //recover password with email
-    async passwordRecovery({email,url='my-blog-ashlesh.vercel.app/reset-password'}) {
+    async passwordRecovery({email}) {
         try {
-            const responce =  await this.account.createRecovery(email, url);
-            if (responce) {
-                return responce;
+            const response =  await this.account.createRecovery(email, my-blog-ashlesh.vercel.app/reset-password);
+            if (response) {
+                return response;
             }
             else{
                 return null;
