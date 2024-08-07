@@ -57,7 +57,7 @@ export class AuthService {
     }
 
     //recover password with email
-    async passwordRecovery({email,url='http://localhost:5173/reset-password'}) {
+    async passwordRecovery({email,url='my-blog-ashlesh.vercel.app/reset-password'}) {
         try {
             const responce =  await this.account.createRecovery(email, url);
             if (responce) {
@@ -85,8 +85,8 @@ export class AuthService {
         try {
             this.account.createOAuth2Session(
                 OAuthProvider.Google, 
-                'https://localhost:5173/',
-                'https://localhost:5173/login');
+                'my-blog-ashlesh.vercel.app/',
+                'my-blog-ashlesh.vercel.app/login');
         } catch (error) {
             console.log("Appwrite serive :: googleLogin :: error", error);
         }

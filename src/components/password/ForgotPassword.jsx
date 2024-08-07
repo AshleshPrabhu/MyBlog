@@ -12,7 +12,7 @@ function ForgotPassword() {
     const login =async(data)=>{
         setError("")
         try{
-            const Data ={email:data.email,url:'http://localhost:5173/reset-password'}
+            const Data ={email:data.email,url:'my-blog-ashlesh.vercel.app/reset-password'}
             toast.success("Email has been sent. Please check it")
             await authService.passwordRecovery(Data)
         }catch(error){
